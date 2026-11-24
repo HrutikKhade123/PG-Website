@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #070B14;
+    --bg-secondary: #0C1424;
+    --primary-blue: #087BFF;
+    --electric-blue: #20B9FF;
+    --silver: #C8D5E8;
+    --white: #F5F8FF;
+    --muted: #94A3B8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #070B14;
+    color: #F5F8FF;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    background-color: #070B14;
+    color: #F5F8FF;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Continuously shifting animated gradient (for text only) */
+@keyframes animatedGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-flowing-text {
+  background: linear-gradient(
+    90deg,
+    #20B9FF,
+    #087BFF,
+    #9333EA,
+    #38BDF8,
+    #22D3EE,
+    #20B9FF
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animatedGradient 2.2s linear infinite;
+}
+
+/* Clean, stable, premium blue button with subtle curve (rounded-xl) - NO shifting color */
+.btn-primary {
+  background: linear-gradient(to right, #087BFF, #20B9FF);
+  border-radius: 0.75rem; /* Rectangular with subtle curve */
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 4px 20px -2px rgba(8, 123, 255, 0.45);
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px 0 rgba(32, 185, 255, 0.5);
+  opacity: 0.95;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Custom Liquid Glass utilities */
+.glass-panel {
+  background: rgba(12, 20, 36, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 213, 232, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav {
+  background: rgba(7, 11, 20, 0.45);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(200, 213, 232, 0.08);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(12, 20, 36, 0.7) 0%, rgba(7, 11, 20, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 213, 232, 0.1);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(32, 185, 255, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -10px rgba(8, 123, 255, 0.25), inset 0 1px 2px 0 rgba(32, 185, 255, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #070B14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
