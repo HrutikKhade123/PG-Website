@@ -71,18 +71,16 @@ export function Navbar({ onNavigate }: NavbarProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 sm:pt-6 transition-all duration-500 ease-in-out ${
-        visible || mobileMenuOpen
+      className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 sm:pt-6 transition-all duration-500 ease-in-out ${visible || mobileMenuOpen
           ? 'translate-y-0 opacity-100 pointer-events-auto'
           : '-translate-y-full opacity-0 pointer-events-none'
-      }`}
+        }`}
     >
       <nav
-        className={`w-full max-w-5xl transition-all duration-300 rounded-2xl flex items-center justify-between px-5 sm:px-8 py-3 ${
-          scrolled
+        className={`w-full max-w-5xl transition-all duration-300 rounded-2xl flex items-center justify-between px-5 sm:px-8 py-3 ${scrolled
             ? 'glass-nav bg-[#070B14]/30 backdrop-blur-2xl border border-white/[0.08]'
             : 'bg-[#070B14]/10 backdrop-blur-md border border-white/[0.04]'
-        }`}
+          }`}
       >
         {/* Brand Logo */}
         <a
@@ -92,7 +90,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
           aria-label="PG Infotech Solutions Home"
         >
           <img
-            src="/pg-logo.png"
+            src={`${import.meta.env.BASE_URL}pg-logo.png`}
             alt="PG Infotech Solutions Logo"
             className="h-10 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />

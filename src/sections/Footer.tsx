@@ -11,13 +11,13 @@ export function Footer() {
 
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 pb-12">
-        
+
         {/* Top Section: Brand Banner */}
         <div className="pb-12 border-b border-white/[0.06] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-6">
             <a href="#home" className="inline-block group focus:outline-none" aria-label="PG Infotech Solutions">
               <img
-                src="/pg-logo.png"
+                src={`${import.meta.env.BASE_URL}pg-logo.png`}
                 alt="PG Infotech Solutions"
                 className="h-16 sm:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
@@ -51,7 +51,7 @@ export function Footer() {
 
         {/* Middle Section: Columns Grid */}
         <div className="py-12 border-b border-white/[0.06] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          
+
           {/* Col 1: About Summary */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white font-mono">
