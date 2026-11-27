@@ -246,7 +246,7 @@ export function Contact() {
                   className="btn-primary w-full py-3.5 text-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Submit Support Request via WhatsApp</span>
+                  <span>Submit Request</span>
                 </button>
               </form>
             )}

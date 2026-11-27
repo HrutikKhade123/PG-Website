@@ -1,5 +1,10 @@
+import { useEffect, useRef } from 'react';
 import { PhoneCall, FileSearch, CheckCircle2, LifeBuoy } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SUPPORT_STEPS } from '../utils/constants';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const stepIcons = {
   PhoneCall,
@@ -9,8 +14,117 @@ const stepIcons = {
 };
 
 export function SupportProcess() {
+  const containerRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      // Desktop & Tablet (Horizontal layout): Shuffle along X & Y with rotation
+      mm.add('(min-width: 768px)', () => {
+        // Cards 0 & 2 (1st & 3rd): Initial offset in positive direction
+        const forwardCards = [cardRefs.current[0], cardRefs.current[2]].filter(Boolean);
+        // Cards 1 & 3 (2nd & 4th): Initial offset in reverse (negative) direction
+        const reverseCards = [cardRefs.current[1], cardRefs.current[3]].filter(Boolean);
+
+        // Shuffle animation tied to scroll scrub
+        gsap.fromTo(
+          forwardCards,
+          {
+            y: 70,
+            x: -25,
+            rotateZ: -3,
+            opacity: 0.4,
+          },
+          {
+            y: 0,
+            x: 0,
+            rotateZ: 0,
+            opacity: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 85%',
+              end: 'top 35%',
+              scrub: 1.2,
+            },
+          }
+        );
+
+        gsap.fromTo(
+          reverseCards,
+          {
+            y: -70,
+            x: 25,
+            rotateZ: 3,
+            opacity: 0.4,
+          },
+          {
+            y: 0,
+            x: 0,
+            rotateZ: 0,
+            opacity: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 85%',
+              end: 'top 35%',
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+
+      // Mobile (Vertical layout): Shuffle from left and right alternately
+      mm.add('(max-width: 767px)', () => {
+        const forwardCards = [cardRefs.current[0], cardRefs.current[2]].filter(Boolean);
+        const reverseCards = [cardRefs.current[1], cardRefs.current[3]].filter(Boolean);
+
+        gsap.fromTo(
+          forwardCards,
+          { x: -50, opacity: 0.3, rotateZ: -2 },
+          {
+            x: 0,
+            opacity: 1,
+            rotateZ: 0,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 90%',
+              end: 'bottom 80%',
+              scrub: 1,
+            },
+          }
+        );
+
+        gsap.fromTo(
+          reverseCards,
+          { x: 50, opacity: 0.3, rotateZ: 2 },
+          {
+            x: 0,
+            opacity: 1,
+            rotateZ: 0,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 90%',
+              end: 'bottom 80%',
+              scrub: 1,
+            },
+          }
+        );
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="process" className="py-24 relative overflow-hidden bg-[#070B14]">
+    <section id="process" ref={containerRef} className="py-24 relative overflow-hidden bg-[#070B14]">
       {/* Ambient background lighting */}
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -31,19 +145,16 @@ export function SupportProcess() {
 
         {/* Timeline Wrapper */}
         <div className="relative">
-          
-          {/* Progressive Connecting Line on Desktop */}
-          <div className="hidden lg:block absolute top-12 left-12 right-12 h-[2px] bg-gradient-to-r from-[#087BFF] via-[#20B9FF] to-[#C8D5E8]/40 -z-0" />
-
           {/* Steps Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-            {SUPPORT_STEPS.map((item) => {
+            {SUPPORT_STEPS.map((item, index) => {
               const Icon = stepIcons[item.icon as keyof typeof stepIcons] || LifeBuoy;
 
               return (
                 <div
                   key={item.step}
-                  className="glass-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between border border-white/[0.08] hover:border-sky-400/40 group relative transition-all duration-300"
+                  ref={(el) => { cardRefs.current[index] = el; }}
+                  className="glass-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between border border-white/[0.08] hover:border-sky-400/40 group relative transition-colors duration-300 will-change-transform"
                 >
                   <div>
                     {/* Step Icon Badge */}
@@ -75,7 +186,6 @@ export function SupportProcess() {
               );
             })}
           </div>
-
         </div>
 
       </div>

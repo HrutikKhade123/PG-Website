@@ -8,7 +8,7 @@ export function Hero() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute top-10 left-1/4 w-72 h-72 bg-sky-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 w-full text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
         
         {/* Small Label with Liquid Glass badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/[0.04] border border-white/[0.12] backdrop-blur-md shadow-sm mb-6">
@@ -18,10 +18,10 @@ export function Hero() {
           </span>
         </div>
 
-        {/* Main Heading with dynamic shifting gradient on "We've Got You Covered." */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#F5F8FF] leading-[1.1] text-balance mb-6">
-          Technology Problems? <br />
-          <span className="gradient-flowing-text">
+        {/* Main Heading: Strictly 2 lines with whitespace-nowrap on each line */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tight text-[#F5F8FF] leading-[1.1] mb-8">
+          <span className="block sm:whitespace-nowrap">Technology Problems?</span>
+          <span className="gradient-flowing-text block sm:whitespace-nowrap">
             We've Got You Covered.
           </span>
         </h1>

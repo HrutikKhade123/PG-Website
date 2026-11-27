@@ -24,10 +24,10 @@ export function PanIndiaCoverage() {
         </div>
 
         {/* Main Grid: Interactive 3D India Map + Information Panels */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* 3D Geographically Accurate Map Column */}
-          <div className="lg:col-span-8 relative w-full h-[450px] sm:h-[550px] lg:h-[640px] rounded-2xl glass-panel border border-white/10 overflow-hidden flex items-center justify-center p-2">
+          <div className="lg:col-span-8 relative w-full min-h-[460px] sm:min-h-[540px] lg:min-h-0 h-full rounded-2xl glass-panel border border-white/10 overflow-hidden flex flex-col items-center justify-center p-2">
             <IndiaMapScene />
 
             {/* Floating Telemetry Overlay Badge */}
@@ -37,11 +37,6 @@ export function PanIndiaCoverage() {
                 <p className="text-[10px] uppercase font-mono tracking-wider text-[#94A3B8]">PAN India Network</p>
                 <p className="text-xs font-bold text-white">Active On-Site &amp; Regional Support</p>
               </div>
-            </div>
-
-            {/* Interactive hint */}
-            <div className="absolute top-6 right-6 z-20 glass-panel px-3 py-1.5 rounded-lg border border-white/10 text-[10px] text-[#94A3B8] font-mono hidden sm:block">
-              3D Interactive View • Drag to Orbit
             </div>
           </div>
 

@@ -97,7 +97,7 @@ function IndiaExtrusion() {
   });
 
   return (
-    <group ref={meshGroup} position={[0, -0.2, 0]}>
+    <group ref={meshGroup} position={[0, 0.25, 0]} scale={0.68}>
       {/* Dark Graphite / Metallic India Topography */}
       {extrudeGeometries.map((geom, index) => (
         <group key={index}>
@@ -154,22 +154,15 @@ function IndiaExtrusion() {
           );
         })}
       </group>
-
-      {/* Base Grid Pedestal */}
-      <gridHelper
-        args={[14, 28, '#087bff', '#0c1a30']}
-        position={[0, 0, -0.05]}
-        rotation={[Math.PI / 2, 0, 0]}
-      />
     </group>
   );
 }
 
 export function IndiaMapScene() {
   return (
-    <div className="w-full h-full min-h-[460px] md:min-h-[640px] relative">
+    <div className="w-full h-full min-h-[420px] lg:min-h-0 relative flex-1">
       <Canvas
-        camera={{ position: [0, 0, 9.8], fov: 42 }}
+        camera={{ position: [0, 0, 11.2], fov: 38 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
       >
